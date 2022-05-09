@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Abhay's square</title>
+ 
+    <style>
+        .btn-xl 
+     {
+            padding: 5pt 72pt;
+            font-size: 20px;
+            border-radius: 10px;
+            width: 100%;
+            background-color: #CC99FF;
+        }
+        
+        .btn-enter 
+     {
+            width: 100%;
+            padding-top: 48px;
+            padding-bottom: 48px;
+            background-color: #f3e5f5;
+        }
+        /*     table, th, td
+         
+     {
+       border:2px solid red; 
+
+}   */
+        
+        .btn-lg 
+     {
+            width: 100%;
+            height: 100%;
+            /* padding: 10px; */
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: #f3e5f5;
+        }
+        
+        #ans_box,
+        #ques_box 
+     {
+            padding: 10px;
+            font-size: 20px;
+            width: 100%;
+            background: #9d9dfb;
+            border-radius: 10px;
+            color: #0707ab;
+            font-weight: bold;
+        }
+        
+        #table1 
+     {
+            border-spacing: 150px;
+            border-radius: 10px;
+        }
+        
+        body 
+     {
+            background-color: white;
+        }
+        
+
+  /*	   select 
+	       {
+				display: block;
+				margin: 0 auto;
+             }
+*/
+        #toptable 
+     {
+            border: 5px solid #CC99FF;
+            border-radius: 10px;
+            padding: 5px;
+            border-collapse: separate !important;
+            background-color: #05057a;
+            table-layout: fixed;
+        }
+        
+        #headin 
+     {
+            color: White;
+        }
+    </style>
+
+
+</head>
+
+<body onload="startg()">
+    <!--🐞debug🐞 code  <p id="stoore">Hello</p>
+        <p id="stre">Hello</p> 
+-->
+<div align="center" style="margin-top:30px">Please choose the maximum range:
+<select  id="max_id" name="max" style="color: orange; font-weight: bold;" oninput="max()">
+  <option value="10">10</option>
+  <option  value="20" selected>20</option>
+  <option value="30">30</option>
+  <option value="40">40</option>
+  <option value="50">50</option>
+  <option value="60">60</option>
+  <option value="70">70</option>
+</select>
+</div>
+
+<div align="center">
+  <span align="center" >Please choose your question:-</span><br>
+  <input id="sqr" name="topic" type="radio" value="22" checked oninput="chng_cube_root(this.value)" />
+  <label for="sqr">Square</label>
+
+  <input id="cube" name="topic" type="radio" value="33" oninput="chng_cube_root(this.value)" />
+  <label for="cube">Cube</label>
+  <div>
+<!--
+	  <p id="demooo">hello</p>  -->
+    <table id="toptable" class="w3-panel w3-card-4 w3-round-large" style="margin:auto; margin-top:5px; width:70%; ">
+        <tr align "center">
+            <th colspan="4" id="headin">
+                Find the square root of:
+            </th>
+        </tr>
+        <tr align "center">
+            <td colspan="4">
+                <input type="text" id="ques_box" readonly/>
+            </td>
+        </tr>
+
+        <tr align "center">
+            <td colspan="4">
+                <input type="text" id="ans_box" readonly/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button type="button" class="btn btn-lg" value="7" onclick="typeTxt(this.value)">7</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="8" onclick="typeTxt(this.value)">8</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="9" onclick="typeTxt(this.value)">9</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" onclick="backspc()">⌫</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-lg" value="4" onclick="typeTxt(this.value)">4</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="5" onclick="typeTxt(this.value)">5</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="6" onclick="typeTxt(this.value)">6</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="4" onclick="typeTxt(this.value)">4</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-lg" value="1" onclick="typeTxt(this.value)">1</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="2" onclick="typeTxt(this.value)">2</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-lg" value="3" onclick="typeTxt(this.value)">3</button>
+            </td>
+
+            <td rowspan="2">
+                <button type="button" class="btn btn-enter" type="button" id="entr_btn" value="↰" onclick="add_to_table()">↰</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-lg" value="0" onclick="typeTxt(this.value)">0</button>
+            </td>
+            <td colspan="2">
+                <button type="button" class="btn btn-lg" value="/" onclick="backspc()">CE</button>
+            </td>
+        </tr>
+        <tr align="center">
+            <td colspan="4">
+                <button type="button" class="btn btn-xl" value="clear" onclick="document.getElementById('ans_box').value=' ' ">Clear</button>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-striped table-dark" style="margin:auto; margin-top:50px;width:70%;table-layout: fixed">
+        <tr>
+            <th scope="col">Correct</th>
+            <th scope="col">Incorrect</th>
+        </tr>
+        <tr>
+            <td>
+                <table id="myTable1" class="table table-striped table-dark" style="padding:50px;margin:auto;">
+                    <tbody id="crt_tbody">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table id="myTable2" class="table table-striped table-dark" style="padding:50px; margin:auto;">
+                    <tbody id="wrg_tbody">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+    <script>
+        mylist = [];
+        var randm_val = "";
+/*🐞debug🐞 line--  var stre="";   --🐞debug🐞 line*/
+         aa = 0;   /*counting the times it ran*/
+        var user_answer = "";
+        var maxx=20;
+        var flag=1;
+		var giv_rt_cube="";
+
+/*This func will change the maximum range of questions */
+		function max() 
+     {
+					document.getElementById("entr_btn").disabled = false;
+                    maxn= document.getElementById("max_id").value; 
+ /*getting value of select and save in maxn*/
+    /*    document.getElementById("demooo").innerHTML=maxn;  */
+/*display that in demooo paragraph for 🐞debug🐞*/
+        document.getElementById("ques_box").value="Press enter to start";
+/*Display message to press enter*/
+           maxx=maxn;
+/*changing the maxx value range*/
+        }
+
+
+
+     function chng_cube_root(value_rec)
+    {
+       if (value_rec==22)
+          {
+    		 flag=1;
+              aa = 0;
+ /* document.getElementById("stre").innerHTML=aa; */
+            mylist = [];
+       /*       document.getElementById("stoore").innerHTML=mylist;  */
+			startg() ;
+document.getElementById("entr_btn").disabled = false;
+document.getElementById("crt_tbody").innerHTML="";
+			document.getElementById("wrg_tbody").innerHTML="";
+document.getElementById("headin").innerHTML="Find the square root of:";
+           }
+       else
+         {
+              flag=2;
+			 aa=0;
+          mylist = [];
+      /*        document.getElementById("stoore").innerHTML=mylist;  */
+			startg() ;
+document.getElementById("entr_btn").disabled = false;
+			document.getElementById("crt_tbody").innerHTML="";
+			document.getElementById("wrg_tbody").innerHTML="";
+document.getElementById("headin").innerHTML="Find the cube root of:";
+          }
+    }
+
+
+ 		function cube_sqr()
+    {
+        if (flag==1)
+        {
+			giv_rt_cube =randm_val ** 2
+             return giv_rt_cube ;
+         }
+        else
+         {
+           giv_rt_cube =randm_val ** 3
+           return giv_rt_cube ;
+          }
+
+     }
+
+
+
+/*This function will generate random Value and return non-repeating value*/
+        function checklist() 
+     {
+            q = Math.floor(Math.random() * (maxx - 1 + 1)) + 1;
+/* generate random num in variable q*/
+/*🐞debug🐞 lines  stre=stre+"+"+q */
+     
+    /*        document.getElementById("stre").innerHTML=stre;   🐞debug🐞 lines*/
+            if (mylist.includes(q)) 
+            /*if random value q is in list then */
+            {
+                return checklist()
+   			/*restart the function */
+            }
+ 		   else /*otherwise */
+           {
+                mylist.push(q);
+               /*add q in the list and return value*/
+                return q
+            }
+      }
+
+/*MAIN FUNCTION - This function is to check how many times the game will run + Also taking radom vakue to show square and cube*/
+        function startg() 
+     {
+            /*clear border and clear text*/
+            document.getElementById('ans_box').value = ' ';
+            if (aa < maxx) 
+            {
+                aa = aa + 1;
+/* document.getElementById("stre").innerHTML=aa; */
+                randm_val = checklist()       
+  /*            document.getElementById("stoore").innerHTML=mylist;  */
+                document.getElementById("ques_box").value = cube_sqr();
+            }
+           else 
+             {
+document.getElementById("entr_btn").disabled = true;
+                document.getElementById("ques_box").value = "Done with all!"
+            }
+      }
+
+/*Function to show text user typing */
+        function typeTxt(x) 
+     {
+            var t = document.getElementById("ans_box").value;
+            var c = t + x;
+            document.getElementById("ans_box").value = c;
+        }
+
+
+/*Delete last word by backspace */
+        function backspc() 
+     {
+            var str = document.getElementById("ans_box").value;
+            var res = str.substring(0, str.length - 1);
+            document.getElementById("ans_box").value = res;
+        }
+    </script>
+
+
+
+    <script>
+/*If user answer matches the Random generated value then add in Correct table, else Incorrect table and start startg() */
+        function add_to_table() 
+     {
+            var user_answer = document.getElementById("ans_box").value;
+            if (user_answer == randm_val) 
+             {
+                correct_table(randm_val)
+				
+                startg()
+            }
+            else 
+             {
+                incorrect_table(randm_val)
+                startg()
+              }
+        }
+
+
+
+/*These two functions are solely responsible to add digit to table at the end*/
+        function correct_table(randm_val) 
+     {
+            var tableRef = document.getElementById('myTable1').getElementsByTagName('tbody')[0];
+            // Insert a row in the table at row index 0
+
+            var newRow = tableRef.insertRow(tableRef.rows.length);
+            // Insert a cell in the row at index 0
+            var newCell = newRow.insertCell(0);
+            // Append a text node to the cell
+            var newText = document.createTextNode(randm_val + "=" + giv_rt_cube)
+            newCell.appendChild(newText);
+        }
+
+        function incorrect_table(user_answer) 
+     {
+            var tableRef = document.getElementById('myTable2').getElementsByTagName('tbody')[0];
+            // Insert a row in the table at row index 0
+            var newRoow = tableRef.insertRow(tableRef.rows.length);
+            // Insert a cell in the row at index 0
+            var newCeell = newRoow.insertCell(0);
+            // Append a text node to the cell
+            var newTeext = document.createTextNode(user_answer + " = " + giv_rt_cube)
+            newCeell.appendChild(newTeext);
+        }
+    </script>
+
+</html>
